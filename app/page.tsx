@@ -27,7 +27,7 @@ export default function Home() {
               Collection
             </h1>
             <div
-              className={`${inter.className} flex flex-col gap-12 text-white/50 text-sm font-light max-w-[300px]`}
+              className={`flex flex-col gap-12 text-white/50 text-sm font-light max-w-[300px]`}
               style={{ fontSize: `${0.875 * textSize}rem` }}
             >
               <div className="space-y-6">

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { X } from "lucide-react"
 import { Artwork } from "@/data/artworks"
+import { useState, useEffect } from "react"
 
 interface ArtworkModalProps {
   artwork: Artwork | null
@@ -11,6 +12,17 @@ interface ArtworkModalProps {
 }
 
 export function ArtworkModal({ artwork, isOpen, onClose }: ArtworkModalProps) {
+  const [imageSize, setImageSize] = useState<{
+    width: number
+    height: number
+  } | null>(null)
+
+  useEffect(() => {
+    if (!isOpen) {
+      setImageSize(null)
+    }
+  }, [isOpen])
+
   if (!artwork) return null
 
   return (
@@ -51,13 +63,26 @@ export function ArtworkModal({ artwork, isOpen, onClose }: ArtworkModalProps) {
               {/* Content */}
               <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
                 {/* Media Section */}
-                <div className="relative w-full lg:w-1/2 h-64 lg:h-auto bg-muted">
+                <div
+                  className="relative w-full lg:w-1/2 bg-black"
+                  style={
+                    imageSize
+                      ? { aspectRatio: `${imageSize.width} / ${imageSize.height}` }
+                      : { aspectRatio: "1 / 1" }
+                  }
+                >
                   <Image
                     src={artwork.image || "/placeholder.jpg"}
                     alt={artwork.title}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
+                    onLoadingComplete={img =>
+                      setImageSize({
+                        width: img.naturalWidth,
+                        height: img.naturalHeight,
+                      })
+                    }
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>

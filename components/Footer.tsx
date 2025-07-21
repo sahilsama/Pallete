@@ -8,7 +8,7 @@ import { ppEditorialNewUltralightItalic } from "@/app/fonts" // Import the custo
 
 export function Footer() {
   return (
-    <footer className="bg-black text-white py-12 px-8 md:px-16 lg:px-24">
+    <footer className="bg-[#141414] text-white py-12 px-8 md:px-16 lg:px-24 bor">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16">
         {/* Brand Section */}
         <div className="space-y-4">

@@ -35,7 +35,6 @@ export function FrameDetailModal({ isOpen, onClose, frame }: FrameDetailModalPro
           {frame.video.endsWith(".mp4") || frame.video.endsWith(".mov") ? (
             <video
               src={frame.video}
-              controls
               loop
               muted
               autoPlay

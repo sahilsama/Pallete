@@ -24,6 +24,9 @@ export default function GalleryPage() {
         </div>
         <ArtworkGrid />
       </main>
+      <footer className="text-center text-white/50 text-sm pt-8 border-t border-white/10 mt-12">
+          <p>&copy; {new Date().getFullYear()} Pallete Studio. All rights reserved.</p>
+        </footer>
     </div>
   )
 } 
