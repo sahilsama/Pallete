@@ -46,7 +46,7 @@ export function Footer() {
           <address className="not-italic text-white/70 text-sm space-y-1">
             <p>Clement town</p>
             <p>Dehradun, IN 10001</p>
-            <p>Email: info@artistrygallery.com</p>
+            <p>Email: info@pallete.com</p>
             <p>Phone: +1 (212) 555-1234</p>
           </address>
         </div>
@@ -87,7 +87,7 @@ export function Footer() {
 
       {/* Copyright */}
       <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/50 text-sm">
-        <p>© {new Date().getFullYear()} Artistry Gallery. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Pallete Studio. All rights reserved.</p>
       </div>
     </footer>
   )
