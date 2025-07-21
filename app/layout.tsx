@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
 import { ConditionalFooter } from "@/components/ConditionalFooter"
 import type React from "react"
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
   title: "Dynamic Frame Layout",
@@ -24,6 +25,7 @@ export default function RootLayout({
           {children}
         </main>
         <ConditionalFooter />
+        <Analytics />
       </body>
     </html>
   )
