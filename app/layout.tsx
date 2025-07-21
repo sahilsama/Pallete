@@ -7,9 +7,9 @@ import type React from "react"
 import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
-  title: "Dynamic Frame Layout",
-  description: "A dynamic frame layout with custom fonts",
-    generator: 'v0.dev'
+  title: "Pallete Docs",
+  description: "Pallete - A dynamic platform for contemporary art exploration and inspiration",
+  generator: 'vscode'
 }
 
 export default function RootLayout({
