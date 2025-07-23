@@ -15,7 +15,7 @@ const CELL_SIZE = 60 // pixels per grid cell
 
 interface Frame {
   id: number
-  video: string
+  image: string
   defaultPos: { x: number; y: number; w: number; h: number }
   corner: string
   edgeHorizontal: string
@@ -23,7 +23,6 @@ interface Frame {
   mediaSize: number
   borderThickness: number
   borderSize: number
-  autoplayMode: "all" | "hover"
   isHovered: boolean
   prompt: string
   totalLikes: number
@@ -36,183 +35,165 @@ interface Frame {
 const initialFrames: Frame[] = [
   {
     id: 1,
-    video: "https://static.cdn-luma.com/files/981e483f71aa764b/Company%20Thing%20Exported.mp4",
+    image: "/images/dragon.jpg",
     defaultPos: { x: 0, y: 0, w: 4, h: 4 },
-    corner: "https://static.cdn-luma.com/files/bcf576df9c38b05f/1_corner_update.png",
-    edgeHorizontal: "https://static.cdn-luma.com/files/bcf576df9c38b05f/1_vert_update.png",
-    edgeVertical: "https://static.cdn-luma.com/files/bcf576df9c38b05f/1_hori_update.png",
+    corner: "",
+    edgeHorizontal: "",
+    edgeVertical: "",
     mediaSize: 1,
     borderThickness: 0,
     borderSize: 80,
-    autoplayMode: "all",
     isHovered: false,
     totalLikes: 127,
     isLiked: false,
     author: "Design Studio",
     createdAt: new Date("2024-01-15"),
     likeHistory: [],
-    prompt:
-      "Create a modern, minimalist company presentation video with smooth transitions and professional typography. Focus on clean design elements and subtle animations that convey innovation and reliability.",
+    prompt: "A dragon in a rooftop garden.",
   },
   {
     id: 2,
-    video: "https://static.cdn-luma.com/files/58ab7363888153e3/WebGL%20Exported%20(1).mp4",
+    image: "/images/flower.png",
     defaultPos: { x: 4, y: 0, w: 4, h: 4 },
-    corner: "https://static.cdn-luma.com/files/bcf576df9c38b05f/2_corner_update.png",
-    edgeHorizontal: "https://static.cdn-luma.com/files/bcf576df9c38b05f/2_vert_update.png",
-    edgeVertical: "https://static.cdn-luma.com/files/bcf576df9c38b05f/2_hori_update.png",
+    corner: "",
+    edgeHorizontal: "",
+    edgeVertical: "",
     mediaSize: 1,
     borderThickness: 0,
     borderSize: 80,
-    autoplayMode: "all",
     isHovered: false,
     totalLikes: 89,
     isLiked: false,
     author: "WebGL Master",
     createdAt: new Date("2024-01-18"),
     likeHistory: [],
-    prompt:
-      "Design an interactive WebGL experience with fluid 3D animations and particle effects. Emphasize dynamic lighting, smooth camera movements, and responsive user interactions for an immersive digital experience.",
+    prompt: "Three hibiscus flowers in a painting style.",
   },
   {
     id: 3,
-    video: "https://static.cdn-luma.com/files/58ab7363888153e3/Jitter%20Exported%20Poster.mp4",
+    image: "/images/god.png",
     defaultPos: { x: 8, y: 0, w: 4, h: 4 },
-    corner: "https://static.cdn-luma.com/files/3d36d1e0dba2476c/3_Corner_update.png",
-    edgeHorizontal: "https://static.cdn-luma.com/files/3d36d1e0dba2476c/3_hori_update.png",
-    edgeVertical: "https://static.cdn-luma.com/files/3d36d1e0dba2476c/3_Vert_update.png",
+    corner: "",
+    edgeHorizontal: "",
+    edgeVertical: "",
     mediaSize: 1,
     borderThickness: 0,
     borderSize: 80,
-    autoplayMode: "all",
     isHovered: false,
     totalLikes: 203,
     isLiked: false,
     author: "Motion Designer",
     createdAt: new Date("2024-01-20"),
     likeHistory: [],
-    prompt:
-      "Create an eye-catching animated poster using Jitter with vibrant colors and dynamic motion graphics. Include playful typography animations and geometric shapes that create visual rhythm and energy.",
+    prompt: "Stained glass geometric style of a female African angel.",
   },
   {
     id: 4,
-    video: "https://static.cdn-luma.com/files/58ab7363888153e3/Exported%20Web%20Video.mp4",
+    image: "/images/iranian.png",
     defaultPos: { x: 0, y: 4, w: 4, h: 4 },
-    corner: "https://static.cdn-luma.com/files/9e67e05f37e52522/4_corner_update.png",
-    edgeHorizontal: "https://static.cdn-luma.com/files/9e67e05f37e52522/4_hori_update.png",
-    edgeVertical: "https://static.cdn-luma.com/files/9e67e05f37e52522/4_vert_update.png",
+    corner: "",
+    edgeHorizontal: "",
+    edgeVertical: "",
     mediaSize: 1,
     borderThickness: 0,
     borderSize: 80,
-    autoplayMode: "all",
     isHovered: false,
     totalLikes: 156,
     isLiked: false,
     author: "Video Producer",
     createdAt: new Date("2024-01-22"),
     likeHistory: [],
-    prompt:
-      "Produce a web-optimized video with fast loading times and crisp quality. Focus on storytelling through visual narrative, incorporating smooth transitions and engaging content that works across all devices and browsers.",
+    prompt: "Iranian art inspired image.",
   },
   {
     id: 5,
-    video: "https://static.cdn-luma.com/files/58ab7363888153e3/Logo%20Exported.mp4",
+    image: "/images/goldengirl.png",
     defaultPos: { x: 4, y: 4, w: 4, h: 4 },
-    corner: "https://static.cdn-luma.com/files/9e67e05f37e52522/5_corner_update.png",
-    edgeHorizontal: "https://static.cdn-luma.com/files/9e67e05f37e52522/5_hori_update.png",
-    edgeVertical: "https://static.cdn-luma.com/files/9e67e05f37e52522/5_verti_update.png",
+    corner: "",
+    edgeHorizontal: "",
+    edgeVertical: "",
     mediaSize: 1,
     borderThickness: 0,
     borderSize: 80,
-    autoplayMode: "all",
     isHovered: false,
-    totalLikes: 94,
+    totalLikes: 111,
     isLiked: false,
-    author: "Brand Designer",
+    author: "Artist 5",
     createdAt: new Date("2024-01-25"),
     likeHistory: [],
-    prompt:
-      "Design an animated logo reveal with sophisticated motion design. Create a memorable brand moment using elegant transitions, perfect timing, and visual elements that reinforce brand identity and values.",
+    prompt: "A woman with gold and amber paintwork.",
   },
   {
     id: 6,
-    video: "https://static.cdn-luma.com/files/58ab7363888153e3/Animation%20Exported%20(4).mp4",
+    image: "/images/flux1.png",
     defaultPos: { x: 8, y: 4, w: 4, h: 4 },
-    corner: "https://static.cdn-luma.com/files/1199340587e8da1d/6_corner.png",
-    edgeHorizontal: "https://static.cdn-luma.com/files/1199340587e8da1d/6_corner-1.png",
-    edgeVertical: "https://static.cdn-luma.com/files/1199340587e8da1d/6_vert.png",
+    corner: "",
+    edgeHorizontal: "",
+    edgeVertical: "",
     mediaSize: 1,
     borderThickness: 0,
     borderSize: 80,
-    autoplayMode: "all",
     isHovered: false,
-    totalLikes: 178,
+    totalLikes: 99,
     isLiked: false,
-    author: "Animator",
+    author: "Artist 6",
     createdAt: new Date("2024-01-28"),
     likeHistory: [],
-    prompt:
-      "Create a complex character animation with fluid movements and expressive gestures. Focus on personality-driven motion, natural timing, and detailed character interactions that bring life to digital personas.",
+    prompt: "Close-up portrait with a yellow handbag.",
   },
   {
     id: 7,
-    video: "https://static.cdn-luma.com/files/58ab7363888153e3/Illustration%20Exported%20(1).mp4",
+    image: "/images/floral suit.png",
     defaultPos: { x: 0, y: 8, w: 4, h: 4 },
-    corner: "https://static.cdn-luma.com/files/b80b5aa00ccc33bd/7_corner.png",
-    edgeHorizontal: "https://static.cdn-luma.com/files/b80b5aa00ccc33bd/7_hori.png",
-    edgeVertical: "https://static.cdn-luma.com/files/b80b5aa00ccc33bd/7_vert.png",
+    corner: "",
+    edgeHorizontal: "",
+    edgeVertical: "",
     mediaSize: 1,
     borderThickness: 0,
     borderSize: 80,
-    autoplayMode: "all",
     isHovered: false,
-    totalLikes: 142,
+    totalLikes: 77,
     isLiked: false,
-    author: "Illustrator",
+    author: "Artist 7",
     createdAt: new Date("2024-02-01"),
     likeHistory: [],
-    prompt:
-      "Develop animated illustrations with artistic flair and creative storytelling. Combine hand-drawn aesthetics with digital animation techniques to create unique visual narratives that captivate and inspire.",
+    prompt: "Luxury fashion floral suit.",
   },
   {
     id: 8,
-    video: "https://static.cdn-luma.com/files/58ab7363888153e3/Art%20Direction%20Exported.mp4",
+    image: "/images/model.jpg",
     defaultPos: { x: 4, y: 8, w: 4, h: 4 },
-    corner: "https://static.cdn-luma.com/files/981e483f71aa764b/8_corner.png",
-    edgeHorizontal: "https://static.cdn-luma.com/files/981e483f71aa764b/8_hori.png",
-    edgeVertical: "https://static.cdn-luma.com/files/981e483f71aa764b/8_verticle.png",
+    corner: "",
+    edgeHorizontal: "",
+    edgeVertical: "",
     mediaSize: 1,
     borderThickness: 0,
     borderSize: 80,
-    autoplayMode: "all",
     isHovered: false,
-    totalLikes: 231,
+    totalLikes: 88,
     isLiked: false,
-    author: "Art Director",
-    createdAt: new Date("2024-02-05"),
+    author: "Artist 8",
+    createdAt: new Date("2024-02-04"),
     likeHistory: [],
-    prompt:
-      "Execute comprehensive art direction with cohesive visual language and strategic design decisions. Create unified brand experiences through careful attention to color, typography, composition, and visual hierarchy.",
+    prompt: "Woman in a black satin dress.",
   },
   {
     id: 9,
-    video: "https://static.cdn-luma.com/files/58ab7363888153e3/Product%20Video.mp4",
+    image: "/images/anime.jpg",
     defaultPos: { x: 8, y: 8, w: 4, h: 4 },
-    corner: "https://static.cdn-luma.com/files/981e483f71aa764b/9_corner.png",
-    edgeHorizontal: "https://static.cdn-luma.com/files/981e483f71aa764b/9_hori.png",
-    edgeVertical: "https://static.cdn-luma.com/files/981e483f71aa764b/9_vert.png",
+    corner: "",
+    edgeHorizontal: "",
+    edgeVertical: "",
     mediaSize: 1,
     borderThickness: 0,
     borderSize: 80,
-    autoplayMode: "all",
     isHovered: false,
-    totalLikes: 167,
+    totalLikes: 66,
     isLiked: false,
-    author: "Product Designer",
-    createdAt: new Date("2024-02-08"),
+    author: "Artist 9",
+    createdAt: new Date("2024-02-07"),
     likeHistory: [],
-    prompt:
-      "PA dreamlike landscape that blends abstract elements with recognizable natural forms. Moreno's signature use of vibrant colors creates an emotional response that transcends traditional landscape painting.",
+    prompt: "Anime style ephemeral moment.",
   },
 ]
 
@@ -343,7 +324,7 @@ export default function DynamicFrameLayout() {
   }
 
   const handleAddFrame = (frameData: {
-    video: string
+    image: string
     prompt: string
     author: string
   }) => {
@@ -352,17 +333,16 @@ export default function DynamicFrameLayout() {
 
     const newFrame: Frame = {
       id: newId,
-      video: frameData.video,
+      image: frameData.image,
       prompt: frameData.prompt,
       author: frameData.author,
-      corner: "https://static.cdn-luma.com/files/bcf576df9c38b05f/1_corner_update.png",
-      edgeHorizontal: "https://static.cdn-luma.com/files/bcf576df9c38b05f/1_vert_update.png",
-      edgeVertical: "https://static.cdn-luma.com/files/bcf576df9c38b05f/1_hori_update.png",
+      corner: "",
+      edgeHorizontal: "",
+      edgeVertical: "",
       defaultPos: position,
       mediaSize: 1,
       borderThickness: 0,
       borderSize: 80,
-      autoplayMode: "all",
       isHovered: false,
       totalLikes: 0,
       isLiked: false,
@@ -481,7 +461,7 @@ export default function DynamicFrameLayout() {
               onMouseLeave={() => !isEditMode && setHovered(null)}
             >
               <FrameComponent
-                video={frame.video}
+                image={frame.image}
                 width="100%"
                 height="100%"
                 className="absolute inset-0"

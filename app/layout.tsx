@@ -1,15 +1,15 @@
 import "./globals.css"
 import { ppEditorialNewUltralightItalic, inter } from "./fonts"
 import { Navbar } from "@/components/Navbar"
-import { Footer } from "@/components/Footer"
+// import { Footer } from "@/components/Footer"
 import { ConditionalFooter } from "@/components/ConditionalFooter"
 import type React from "react"
 import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
-  title: "Dynamic Frame Layout",
-  description: "A dynamic frame layout with custom fonts",
-    generator: 'v0.dev'
+  title: "Pallete ",
+  description: "Pallete - A dynamic platform for contemporary ai art exploration and inspiration",
+  generator: 'vscode'
 }
 
 export default function RootLayout({
@@ -19,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${ppEditorialNewUltralightItalic.variable} ${inter.variable}`}>
+      <head>
+        <link rel="icon" href="/pallete studio.ico" type="image/x-icon" />
+      </head>
       <body className={inter.className}>
         <Navbar />
         <main className="min-h-screen">

@@ -63,7 +63,7 @@ export function ArtworkPopup({ artwork, isVisible, position }: ArtworkPopupProps
                   src={artwork.image || "/placeholder.jpg"}
                   alt={artwork.title}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />

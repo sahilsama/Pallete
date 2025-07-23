@@ -5,8 +5,28 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Instagram, Facebook, Twitter } from "lucide-react"
 import { ppEditorialNewUltralightItalic } from "@/app/fonts" // Import the custom font
+import { useState } from "react"
 
 export function Footer() {
+  const [email, setEmail] = useState("")
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setStatus("idle")
+    const res = await fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    })
+    if (res.ok) {
+      setStatus("success")
+      setEmail("")
+    } else {
+      setStatus("error")
+    }
+  }
+
   return (
     <footer className="bg-[#141414] text-white py-12 px-8 md:px-16 lg:px-24 bor">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16">
@@ -34,6 +54,9 @@ export function Footer() {
             <Link href="/gallery" className="text-white/70 hover:text-white hover:underline transition-colors text-sm">
               Gallery
             </Link>
+            <Link href="/docs" className="text-white/70 hover:text-white hover:underline transition-colors text-sm">
+              Documentation
+            </Link>
             <Link href="/contact" className="text-white/70 hover:text-white hover:underline transition-colors text-sm">
               Contact
             </Link>
@@ -44,10 +67,9 @@ export function Footer() {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-white mb-2">Contact</h3>
           <address className="not-italic text-white/70 text-sm space-y-1">
-            <p>Clement town</p>
             <p>Dehradun, IN 10001</p>
-            <p>Email: info@pallete.com</p>
-            <p>Phone: +1 (212) 555-1234</p>
+            <p>Email: lyca02724@gmail.com</p>
+            <p>Phone: +91 (212) XXX-1234</p>
           </address>
         </div>
 
@@ -68,11 +90,14 @@ export function Footer() {
 
           <div className="space-y-2 pt-4">
             <p className="text-lg font-semibold text-white">Subscribe</p>
-            <form className="flex gap-2">
+            <form className="flex gap-2" onSubmit={handleSubmit}>
               <Input
                 type="email"
                 placeholder="Your email"
                 className="flex-1 bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:ring-white/30 focus:border-white/30"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
               />
               <Button
                 type="submit"
@@ -81,6 +106,8 @@ export function Footer() {
                 Subscribe
               </Button>
             </form>
+            {status === "success" && <p className="text-green-400">Subscribed!</p>}
+            {status === "error" && <p className="text-red-400">Something went wrong.</p>}
           </div>
         </div>
       </div>

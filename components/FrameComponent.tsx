@@ -5,7 +5,7 @@ import type React from "react"
 import { useEffect, useRef, useState } from "react"
 
 interface FrameComponentProps {
-  video: string
+  image: string
   width: number | string
   height: number | string
   className?: string
@@ -20,7 +20,6 @@ interface FrameComponentProps {
   onBorderSizeChange: (value: number) => void
   showControls: boolean
   label: string
-  autoplayMode: "all" | "hover"
   isHovered: boolean
   prompt: string
   likes: number
@@ -32,8 +31,19 @@ interface FrameComponentProps {
   onClick?: () => void
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.matchMedia("(max-width: 640px)").matches);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+  return isMobile;
+}
+
 export function FrameComponent({
-  video,
+  image,
   width,
   height,
   className = "",
@@ -48,7 +58,6 @@ export function FrameComponent({
   onBorderSizeChange,
   showControls,
   label,
-  autoplayMode,
   isHovered,
   prompt,
   likes,
@@ -59,31 +68,18 @@ export function FrameComponent({
   author,
   onClick,
 }: FrameComponentProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
   const [isFlipped, setIsFlipped] = useState(false)
   const [likeAnimation, setLikeAnimation] = useState(false)
-
-  useEffect(() => {
-    if (autoplayMode === "all") {
-      videoRef.current?.play()
-    } else if (autoplayMode === "hover") {
-      if (isHovered) {
-        videoRef.current?.play()
-      } else {
-        videoRef.current?.pause()
-      }
-    }
-  }, [isHovered, autoplayMode])
+  const isMobile = useIsMobile();
 
   const handleFlip = (e: React.MouseEvent) => {
     e.stopPropagation()
-    if (!isEditMode) {
+    if (!isEditMode && !isMobile) {
       setIsFlipped(!isFlipped)
     }
   }
 
   const handleBackgroundClick = (e: React.MouseEvent) => {
-    // Only flip if clicking on the background, not on content
     if (e.target === e.currentTarget && !isEditMode) {
       setIsFlipped(false)
     }
@@ -99,7 +95,6 @@ export function FrameComponent({
     if (!isEditMode) {
       setLikeAnimation(true)
       onLike()
-      // Reset animation after it completes
       setTimeout(() => setLikeAnimation(false), 600)
     }
   }
@@ -118,10 +113,10 @@ export function FrameComponent({
         className="relative w-full h-full transition-transform duration-700 preserve-3d"
         style={{
           transformStyle: "preserve-3d",
-          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          transform: isMobile ? "rotateY(0deg)" : isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Side - Video */}
+        {/* Front Side - Image */}
         <div
           className="absolute inset-0 w-full h-full backface-hidden"
           style={{
@@ -165,7 +160,6 @@ export function FrameComponent({
                 disabled={isEditMode}
               >
                 {isLiked ? (
-                  // Filled heart when liked
                   <svg
                     width="16"
                     height="16"
@@ -176,7 +170,6 @@ export function FrameComponent({
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                   </svg>
                 ) : (
-                  // Outline heart when not liked
                   <svg
                     width="16"
                     height="16"
@@ -189,8 +182,6 @@ export function FrameComponent({
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                   </svg>
                 )}
-
-                {/* Floating animation for like/unlike */}
                 {likeAnimation && (
                   <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 pointer-events-none">
                     <span
@@ -203,7 +194,6 @@ export function FrameComponent({
                   </div>
                 )}
               </button>
-
               <span
                 className={`text-white/80 text-sm font-medium transition-all duration-300 ${
                   likeAnimation ? "scale-110 text-white" : ""
@@ -214,7 +204,7 @@ export function FrameComponent({
             </div>
 
             {/* Liquid Glass Prompt Button - Bottom Center */}
-            {!isEditMode && (
+            {/* {!isEditMode && !isMobile && (
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
                 <button
                   onClick={handleFlip}
@@ -235,9 +225,9 @@ export function FrameComponent({
                   />
                 </button>
               </div>
-            )}
+            )} */}
 
-            {/* Video with Border */}
+            {/* Image with Border */}
             <div
               className="absolute inset-0 flex items-center justify-center cursor-pointer"
               style={{
@@ -254,51 +244,11 @@ export function FrameComponent({
                   transition: "transform 0.3s ease-in-out",
                 }}
               >
-                <video
-                  className="w-full h-full object-cover"
-                  src={video}
-                  loop
-                  muted
-                  playsInline
-                  autoPlay={autoplayMode === "all" || (autoplayMode === "hover" && isHovered)}
-                  ref={videoRef}
-                  onError={(e) => {
-                    console.error("Video failed to load:", video, e)
-                    // Show a fallback message or placeholder
-                    const videoElement = e.currentTarget
-                    videoElement.style.display = "none"
-                    // Show fallback content
-                    const container = videoElement.parentElement
-                    if (container) {
-                      container.innerHTML = `
-                        <div class="w-full h-full flex items-center justify-center bg-gray-800 text-white text-center p-4">
-                          <div>
-                            <svg class="w-12 h-12 mx-auto mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                            </svg>
-                            <p class="text-sm text-gray-300">Video failed to load</p>
-                            <p class="text-xs text-gray-500 mt-1">Check the URL or file format</p>
-                          </div>
-                        </div>
-                      `
-                    }
-                  }}
-                  onLoadStart={() => {
-                    console.log("Video loading started:", video)
-                  }}
-                  onCanPlay={() => {
-                    console.log("Video can play:", video)
-                  }}
-                  onMouseEnter={(e) => {
-                    if (autoplayMode === "hover") {
-                      e.currentTarget.play().catch(err => console.error("Failed to play video:", err))
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (autoplayMode === "hover") {
-                      e.currentTarget.pause()
-                    }
-                  }}
+                <img
+                  className="w-full h-full object-contain border border-white/30"
+                  src={image}
+                  alt={label}
+                  draggable={false}
                 />
               </div>
             </div>
@@ -314,26 +264,23 @@ export function FrameComponent({
           }}
           onClick={handleBackgroundClick}
         >
-          <div className="p-6 h-full flex flex-col justify-center items-center text-center relative">
-            <div className="mb-4">
-              <h3 className="text-lg font-semibold text-white mb-2">{label}</h3>
+          <div className="p-4 sm:p-6 h-full flex flex-col justify-center items-center text-center relative max-h-full">
+            <div className="mb-2 sm:mb-4">
+              <h3 className="text-base sm:text-lg font-semibold text-white mb-1 sm:mb-2">{label}</h3>
               <div className="w-12 h-px bg-white/30 mx-auto"></div>
             </div>
-            <div className="flex-1 flex items-center justify-center">
-              <p className="text-white/80 text-sm leading-relaxed max-w-full overflow-y-auto">{prompt}</p>
+            <div className="flex-1 flex items-center justify-center w-full max-h-full">
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed w-full max-w-full max-h-full overflow-y-auto break-words">
+                {prompt}
+              </p>
             </div>
-
-            {/* Author Attribution - Bottom Right */}
-            <div className="absolute bottom-4 right-4">
+            <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4">
               <span className="text-white/50 text-xs font-medium italic">~{author}</span>
             </div>
-
-            <div className="mt-4 text-xs text-white/40">Click here to go back</div>
+            <div className="mt-2 sm:mt-4 text-xs text-white/40">Click here to go back</div>
           </div>
         </div>
       </div>
-
-      {/* Controls */}
       {showControls && (
         <div className="absolute bottom-0 left-0 right-0 p-2 bg-black bg-opacity-50 z-10">
           <div className="text-white font-bold mb-2">{label}</div>

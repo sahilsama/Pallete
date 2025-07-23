@@ -21,13 +21,13 @@ export const artworks: Artwork[] = [
   },
   {
     id: "2",
-    title: "Urban Fragments",
-    artist: "Marcus Chen",
-    price: "LEONARDO.AI",
-    image: "/images/iranian.png",
+    title: "Pet walk",
+    artist: "Karim benzema",
+    price: "flux kontext",
+    image: "/images/dragon.jpg",
     description:
-      "Woman, light brown hair, mid-20s,  light tan skin,  holding a  metallic espresso maker,  wearing a rust-colored, loose-fitting long-sleeve blouse,  mid-century style,  posing in a still life style, surrounded by white and orange daffodils and tulips,  dark teal  background,  natural light,  soft focused lighting,  detailed textures of flowers and fabrics, close-up,  full shot,  woman's hands and face are well defined,  detailed facial expression,  light makeup,  woman appears calm,  composition centered on the woman, a ring is visible on her ring finger,  stylish, elegant,  romantic,  soft lighting, high-key, --ar 1:1 --v 5 --s 800",
-    medium: "Acrylic on Canvas",
+      "A serene woman with a calm expression, soft features, and gentle eyes stands on her lush rooftop garden, surrounded by vibrant greenery and colorful blooming flowers, as she tenderly presses her forehead against the neck of a towering black scaled dragon looking in camera, its scales are hard, dark red tongue out with saliva, its long eyelashes blinking in anger, in a heartwarming, intimate moment captured in a relaxed selfie angle, basking in the warm, golden hour light that casts a gentle glow on her smooth, porcelain-like skin, her dark hair softly tousled by the whispering wind, the atmosphere peaceful and idyllic, --ar 1:1 --v 5 --s 800",
+    medium: "Sun Kissed selfie",
   },
   {
     id: "3",
@@ -74,7 +74,7 @@ export const artworks: Artwork[] = [
     title: "Structural Memory",
     artist: "Alexandra Reed",
     price: "FLUX",
-    image: "/images/muslim.png",
+    image: "/images/goldengirl.png",
     description:
       "A young woman, likely of Caucasian descent, with closed eyes, lies reclined against a textured, cracked teal green background. Her face is adorned with intricate gold and amber paintwork, creating a cracked, almost sculpted effect.  The paint appears to be applied in a way that highlights the texture of skin, giving a sense of depth and detail.  A golden, textured, flowing headscarf-like garment wraps around her head and upper body,  showing rich golden and amber hues that complement the face paint. The fabric has a weighty, luxurious drape, with visible patterns and textures, reminiscent of sculpted bronze.  The lighting is dramatic, highlighting the facial details and the golden tones of the garment, creating a strong contrast with the background.  The overall composition is intimate and dramatic, with a focus on the intricate details of the paint and fabric.  The style is reminiscent of highly detailed portraiture, combined with decorative artistic techniques.  The perspective is slightly from below, with emphasis on the detailed face and flowing garment.  The colors are rich and deep, showcasing a contrast of the teal green background with the golden tones on the subject's face and garment.  The atmosphere is serene and introspective, emphasized by the woman's expression.  ultra detailed, photorealistic, dramatic lighting,  high contrast,  art deco,  cinematic, 8k resolution.",
     medium: "Sculpture",

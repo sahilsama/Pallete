@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 
 interface Frame {
   id: number
-  video: string
+  image: string
   prompt: string
   author: string
   totalLikes: number
@@ -13,7 +13,24 @@ interface Frame {
 interface FrameDetailModalProps {
   isOpen: boolean
   onClose: () => void
-  frame: Frame | null
+  frame: {
+    id: number
+    image: string
+    defaultPos: { x: number; y: number; w: number; h: number }
+    corner: string
+    edgeHorizontal: string
+    edgeVertical: string
+    mediaSize: number
+    borderThickness: number
+    borderSize: number
+    isHovered: boolean
+    prompt: string
+    totalLikes: number
+    isLiked: boolean
+    author: string
+    createdAt: Date
+    likeHistory: { timestamp: Date; action: "like" | "unlike" }[]
+  } | null
 }
 
 export function FrameDetailModal({ isOpen, onClose, frame }: FrameDetailModalProps) {
@@ -32,22 +49,11 @@ export function FrameDetailModal({ isOpen, onClose, frame }: FrameDetailModalPro
       >
         {/* Left Side: Media */}
         <div className="flex-1 flex items-center justify-center min-h-[200px] md:min-h-full">
-          {frame.video.endsWith(".mp4") || frame.video.endsWith(".mov") ? (
-            <video
-              src={frame.video}
-              loop
-              muted
-              autoPlay
-              playsInline
-              className="w-full h-full object-contain rounded-lg"
-            />
-          ) : (
-            <img
-              src={frame.video || "/placeholder.svg"}
-              alt={frame.prompt.substring(0, 50)}
-              className="w-full h-full object-contain rounded-lg"
-            />
-          )}
+          <img
+            src={frame.image || "/placeholder.svg"}
+            alt={frame.prompt.substring(0, 50)}
+            className="w-full h-full object-contain rounded-lg"
+          />
         </div>
 
         {/* Right Side: Details */}
