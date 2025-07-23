@@ -151,6 +151,7 @@ export function FrameComponent({
             )}
 
             {/* Likes Heart - Upper Left Corner */}
+            {!isMobile && (
             <div className="absolute top-3 left-3 z-20 flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1.5 transition-all duration-300">
               <button
                 onClick={handleLike}
@@ -202,6 +203,7 @@ export function FrameComponent({
                 {likes}
               </span>
             </div>
+            )}
 
             {/* Liquid Glass Prompt Button - Bottom Center */}
             {/* {!isEditMode && !isMobile && (

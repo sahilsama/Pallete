@@ -122,7 +122,7 @@ export default function DocsPage() {
           </ul>
 
           <p className="text-white/70">
-            For any questions or concerns regarding our policies, please contact us at support@pallete.com. We are committed to supporting artists and maintaining a safe, creative community.
+            For any questions or concerns regarding our policies, please contact us at lyca02724@gmail.com. We are committed to supporting artists and maintaining a safe, creative community.
           </p>
         </section>
 

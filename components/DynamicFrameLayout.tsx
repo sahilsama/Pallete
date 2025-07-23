@@ -376,23 +376,7 @@ export default function DynamicFrameLayout() {
   }, [frames])
 
   return (
-    <div className="space-y-4 w-full h-full">
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
-            <Switch
-              id="autoplay-toggle"
-              checked={autoplayMode === "all"}
-              onCheckedChange={(checked) => setAutoplayMode(checked ? "all" : "hover")}
-            />
-            <label htmlFor="autoplay-toggle" className="text-sm text-white/70">
-              {autoplayMode === "all" ? "Autoplay All" : "Hover Autoplay"}
-            </label>
-          </div>
-        </div>
-
-      </div>
-
+    <div className="space-y-4 w-full h-full mt-20 md:mt-15">
       {!cleanInterface && (
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold text-white">Dynamic Frame Layout</h2>

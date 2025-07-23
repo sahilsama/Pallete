@@ -57,7 +57,7 @@ export function FrameDetailModal({ isOpen, onClose, frame }: FrameDetailModalPro
         </div>
 
         {/* Right Side: Details */}
-        <div className="flex-1 flex flex-col justify-between space-y-6">
+        <div className="flex-1 flex flex-col justify-between space-y-6 overflow-y-auto max-h-[40vh] md:max-h-[70vh]">
           <div>
             <h2 className="text-2xl font-semibold text-white mb-4">Frame Details</h2>
             <div className="space-y-3">

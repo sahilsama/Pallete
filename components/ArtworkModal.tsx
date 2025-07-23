@@ -48,7 +48,7 @@ export function ArtworkModal({ artwork, isOpen, onClose }: ArtworkModalProps) {
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden w-full max-w-4xl max-h-[90vh] flex flex-col">
+            <div className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-y-auto max-h-[90vh] w-full max-w-4xl flex flex-col">
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-white/10">
                 <h2 className="text-xl font-semibold text-white">Artwork Details</h2>
@@ -61,10 +61,10 @@ export function ArtworkModal({ artwork, isOpen, onClose }: ArtworkModalProps) {
               </div>
               
               {/* Content */}
-              <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
+              <div className="flex flex-col lg:flex-row flex-1">
                 {/* Media Section */}
                 <div
-                  className="relative w-full lg:w-1/2 bg-black"
+                  className="relative w-full lg:w-1/2 bg-black max-h-[50vh] lg:max-h-[70vh] flex items-center justify-center"
                   style={
                     imageSize
                       ? { aspectRatio: `${imageSize.width} / ${imageSize.height}` }

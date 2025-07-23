@@ -7,7 +7,7 @@ import type React from "react"
 import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
-  title: "Pallete Docs",
+  title: "Pallete",
   description: "Pallete - A dynamic platform for contemporary art exploration and inspiration",
   generator: 'vscode'
 }
@@ -24,9 +24,11 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <div>
+          <main className="min-h-screen">
+            {children}
+          </main>
+        </div>
         <ConditionalFooter />
         <Analytics />
       </body>

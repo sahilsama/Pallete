@@ -14,8 +14,8 @@ export default function Home() {
     >
       <div className="w-full h-full flex flex-col md:flex-row items-start gap-8 md:gap-8">
         {/* Left Content */}
-        <div className="w-full md:w-[260px] flex-shrink-0 flex flex-col justify-between h-full">
-          <div className="flex flex-col gap-16">
+        <div className="w-full md:w-[260px] flex-shrink-0 flex flex-col justify-between h-full mt-20 md:mt-32">
+          <div className="flex flex-col">
             <h1
               className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-6xl font-light italic text-white/80 tracking-tighter leading-[130%]`}
               style={{ fontSize: `${4 * headerSize}rem` }}
