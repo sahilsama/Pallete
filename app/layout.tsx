@@ -7,6 +7,9 @@ import type React from "react"
 import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
+  title: "Pallete Docs",
+  description: "Pallete - A dynamic platform for contemporary art exploration and inspiration",
+  generator: 'vscode'
   title: "Pallete ",
   description: "Pallete - A dynamic platform for contemporary ai art exploration and inspiration",
   generator: 'vscode'
