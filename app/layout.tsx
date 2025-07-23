@@ -10,9 +10,6 @@ export const metadata = {
   title: "Pallete Docs",
   description: "Pallete - A dynamic platform for contemporary art exploration and inspiration",
   generator: 'vscode'
-  title: "Pallete ",
-  description: "Pallete - A dynamic platform for contemporary ai art exploration and inspiration",
-  generator: 'vscode'
 }
 
 export default function RootLayout({
