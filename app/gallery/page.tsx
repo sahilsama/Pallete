@@ -24,9 +24,18 @@ export default function GalleryPage() {
         </div>
         <ArtworkGrid />
       </main>
+
+      <a
+        href="/"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors mt-8"
+      >
+        Go back
+      </a>
+
       <footer className="text-center text-white/50 text-sm pt-8 border-t border-white/10 mt-12">
           <p>&copy; {new Date().getFullYear()} Pallete Studio. All rights reserved.</p>
         </footer>
+        
     </div>
   )
 } 

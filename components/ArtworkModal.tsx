@@ -1,9 +1,9 @@
 "use client"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { X } from "lucide-react"
+import { X, Play, Pause } from "lucide-react"
 import { Artwork } from "@/data/artworks"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 interface ArtworkModalProps {
   artwork: Artwork | null
@@ -16,14 +16,84 @@ export function ArtworkModal({ artwork, isOpen, onClose }: ArtworkModalProps) {
     width: number
     height: number
   } | null>(null)
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     if (!isOpen) {
       setImageSize(null)
+      setIsVideoPlaying(false)
     }
   }, [isOpen])
 
+  const toggleVideo = () => {
+    if (videoRef.current) {
+      if (isVideoPlaying) {
+        videoRef.current.pause()
+        setIsVideoPlaying(false)
+      } else {
+        videoRef.current.play()
+        setIsVideoPlaying(true)
+      }
+    }
+  }
+
+  const handleVideoEnded = () => {
+    setIsVideoPlaying(false)
+  }
+
   if (!artwork) return null
+
+  const renderMedia = () => {
+    if (artwork.video) {
+      return (
+        <div className="relative w-full h-full flex items-center justify-center bg-black">
+          <video
+            ref={videoRef}
+            src={artwork.video}
+            className="w-full h-full object-contain"
+            onEnded={handleVideoEnded}
+            onPlay={() => setIsVideoPlaying(true)}
+            onPause={() => setIsVideoPlaying(false)}
+          />
+          {!isVideoPlaying && (
+            <button
+              onClick={toggleVideo}
+              className="absolute inset-0 bg-black/20 flex items-center justify-center hover:bg-black/30 transition-colors"
+            >
+              <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                <Play className="w-8 h-8 text-white" fill="white" />
+              </div>
+            </button>
+          )}
+        </div>
+      )
+    }
+
+    if (artwork.image) {
+      return (
+        <Image
+          src={artwork.image}
+          alt={artwork.title}
+          fill
+          className="object-contain"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          onLoadingComplete={img =>
+            setImageSize({
+              width: img.naturalWidth,
+              height: img.naturalHeight,
+            })
+          }
+        />
+      )
+    }
+
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-muted">
+        <div className="text-muted-foreground text-sm">No media available</div>
+      </div>
+    )
+  }
 
   return (
     <AnimatePresence>
@@ -66,25 +136,13 @@ export function ArtworkModal({ artwork, isOpen, onClose }: ArtworkModalProps) {
                 <div
                   className="relative w-full lg:w-1/2 bg-black max-h-[50vh] lg:max-h-[70vh] flex items-center justify-center"
                   style={
-                    imageSize
+                    imageSize && !artwork.video
                       ? { aspectRatio: `${imageSize.width} / ${imageSize.height}` }
-                      : { aspectRatio: "1 / 1" }
+                      : { aspectRatio: "16 / 9" }
                   }
                 >
-                  <Image
-                    src={artwork.image || "/placeholder.jpg"}
-                    alt={artwork.title}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    onLoadingComplete={img =>
-                      setImageSize({
-                        width: img.naturalWidth,
-                        height: img.naturalHeight,
-                      })
-                    }
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  {renderMedia()}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                 </div>
                 
                 {/* Details Section */}

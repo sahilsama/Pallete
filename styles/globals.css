@@ -92,3 +92,41 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /* container for the animated fill */
+  .btn-fluid {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* solid fill that expands L->R */
+  .btn-fluid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: #6b50ff; /* exact purple */
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 1.5s cubic-bezier(.22,1,.36,1); /* fluid-ish easing */
+    z-index: 0;
+  }
+  /* soft blob head for a "liquid" feel */
+  .btn-fluid::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 64px;                /* blob size */
+    border-radius: 9999px;
+    background: radial-gradient(32px 120% at 32px 50%, #7a5cff 0 60%, #6b50ff 61% 100%);
+    filter: blur(6px);
+    opacity: 0.9;
+    transform: translateX(-64px);
+    transition: transform 1.5s cubic-bezier(.22,1,.36,1);
+    z-index: 0;
+  }
+  .group:hover .btn-fluid::before { transform: scaleX(1); }
+  .group:hover .btn-fluid::after  { transform: translateX(calc(100% - 32px)); }
+}
+

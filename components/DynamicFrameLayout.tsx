@@ -35,7 +35,7 @@ interface Frame {
 const initialFrames: Frame[] = [
   {
     id: 1,
-    image: "/images/dragon.jpg",
+    image: "/assets/images/dragon.jpg",
     defaultPos: { x: 0, y: 0, w: 4, h: 4 },
     corner: "",
     edgeHorizontal: "",
@@ -53,7 +53,7 @@ const initialFrames: Frame[] = [
   },
   {
     id: 2,
-    image: "/images/flower.png",
+    image: "/assets/images/flower.png",
     defaultPos: { x: 4, y: 0, w: 4, h: 4 },
     corner: "",
     edgeHorizontal: "",
@@ -71,7 +71,7 @@ const initialFrames: Frame[] = [
   },
   {
     id: 3,
-    image: "/images/god.png",
+    image: "/assets/images/god.png",
     defaultPos: { x: 8, y: 0, w: 4, h: 4 },
     corner: "",
     edgeHorizontal: "",
@@ -89,7 +89,7 @@ const initialFrames: Frame[] = [
   },
   {
     id: 4,
-    image: "/images/iranian.png",
+    image: "/assets/images/iranian.png",
     defaultPos: { x: 0, y: 4, w: 4, h: 4 },
     corner: "",
     edgeHorizontal: "",
@@ -107,7 +107,7 @@ const initialFrames: Frame[] = [
   },
   {
     id: 5,
-    image: "/images/goldengirl.png",
+    image: "/assets/images/goldengirl.png",
     defaultPos: { x: 4, y: 4, w: 4, h: 4 },
     corner: "",
     edgeHorizontal: "",
@@ -125,7 +125,7 @@ const initialFrames: Frame[] = [
   },
   {
     id: 6,
-    image: "/images/flux1.png",
+    image: "/assets/images/flux1.png",
     defaultPos: { x: 8, y: 4, w: 4, h: 4 },
     corner: "",
     edgeHorizontal: "",
@@ -143,7 +143,7 @@ const initialFrames: Frame[] = [
   },
   {
     id: 7,
-    image: "/images/floral suit.png",
+    image: "/assets/images/floral suit.png",
     defaultPos: { x: 0, y: 8, w: 4, h: 4 },
     corner: "",
     edgeHorizontal: "",
@@ -155,13 +155,13 @@ const initialFrames: Frame[] = [
     totalLikes: 77,
     isLiked: false,
     author: "Artist 7",
-    createdAt: new Date("2024-02-01"),
+    createdAt: new Date("02-01"),
     likeHistory: [],
     prompt: "Luxury fashion floral suit.",
   },
   {
     id: 8,
-    image: "/images/model.jpg",
+    image: "/assets/images/model.jpg",
     defaultPos: { x: 4, y: 8, w: 4, h: 4 },
     corner: "",
     edgeHorizontal: "",
@@ -179,7 +179,7 @@ const initialFrames: Frame[] = [
   },
   {
     id: 9,
-    image: "/images/anime.jpg",
+    image: "/assets/images/anime.jpg",
     defaultPos: { x: 8, y: 8, w: 4, h: 4 },
     corner: "",
     edgeHorizontal: "",

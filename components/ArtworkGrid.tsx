@@ -1,9 +1,11 @@
 "use client"
+
 import { useRef, useState } from "react"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { artworks, Artwork } from "@/data/artworks"
 import { ArtworkModal } from "./ArtworkModal"
+import { Play } from "lucide-react"
 
 export function ArtworkGrid() {
   const ref = useRef(null)
@@ -35,6 +37,47 @@ export function ArtworkGrid() {
     setSelectedArtwork(null)
   }
 
+  const renderMedia = (artwork: Artwork) => {
+    if (artwork.video) {
+      return (
+        <div className="relative w-full h-full flex items-center justify-center">
+          <video
+            src={artwork.video}
+            className="w-full h-full object-cover"
+            muted
+            loop
+            onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
+            onMouseLeave={(e) => (e.target as HTMLVideoElement).pause()}
+          />
+          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+            <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+              <Play className="w-6 h-6 text-white" fill="white" />
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    if (artwork.image) {
+      return (
+        <Image
+          src={artwork.image}
+          alt={artwork.title}
+          fill
+          className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+        />
+      )
+    }
+
+    // Fallback placeholder
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-muted">
+        <div className="text-muted-foreground text-sm">No media</div>
+      </div>
+    )
+  }
+
   return (
     <>
       <motion.div
@@ -52,13 +95,7 @@ export function ArtworkGrid() {
             className="cursor-pointer group block overflow-hidden rounded-lg"
           >
             <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
-              <Image
-                src={artwork.image || "/placeholder.svg"}
-                alt={artwork.title}
-                fill
-                className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-              />
+              {renderMedia(artwork)}
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
             <div className="p-4">
